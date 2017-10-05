@@ -2,12 +2,17 @@
 import docker
 import json
 import os
+import os.path
 import sys
 from datetime import datetime
 import dateutil.parser
 
 def datetime_format(x):
     return x.strftime('%Y-%m-%d %H:%M:%S')
+
+def read_json(filename):
+    with open(filename, 'r') as f:
+        return json.load(f)
 
 def build_schemaspy():
     client = docker.from_env()
@@ -31,7 +36,7 @@ def generate_docs(db_sha):
     uid = os.geteuid()
     schemaspy = build_schemaspy()
     if os.path.exists(dest):
-        if os.path.exists(dest + '/index.html'):
+        if os.path.exists(dest + '/info.json'):
             print("Already created docs for ", db_sha)
             return False
     else:
@@ -57,9 +62,12 @@ def generate_docs(db_sha):
                               volumes = volumes,
                               user = uid,
                               stdout = True)
-        add_run(db_sha,
-                datetime_format(date_image),
-                datetime_format(datetime.now()))
+        info = {'sha': db_sha,
+                'date_image': datetime_format(date_image),
+                'date_generated': datetime_format(datetime.now())}
+        with open(dest + '/info.json', 'w') as f:
+            json.dump(info, f)
+
     finally:
         if db:
             db.stop(timeout = 1)
@@ -69,20 +77,11 @@ def generate_docs(db_sha):
 
     return True
 
-def add_run(sha, date_image, date_docs):
-    if os.path.exists('index.json'):
-        with open('index.json', 'r') as f:
-            dat = json.load(f)
-    else:
-        dat = []
-    dat.append({'sha': sha, 'date_image': date_image, 'date_docs': date_docs})
-    with open('index.json', 'w') as f:
-        json.dump(dat, f)
-
 def generate_index():
     print("updating index")
-    with open('index.json', 'r') as f:
-        dat = json.load(f)
+
+    paths = [os.path.join('docs', x, 'info.json') for x in os.listdir('docs')]
+    dat = [read_json(p) for p in paths if os.path.exists(p)]
     with open('index.html.template', 'r') as f:
         template = f.read()
     fmt = '<li><a href = docs/{sha}/index.html>{sha}</a> ' + \

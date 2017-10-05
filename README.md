@@ -1,5 +1,7 @@
 # montagu-db-docs
 
+**[Rendered documenentation](https://vimc.github.io/montagu-db-docs)**
+
 Automatically generated documentation for [`montagu-db`](https://github.com/vimc/montagu-db) to keep the repository size under control and to allow us to easily see multiple versions at once.
 
 This uses the `docker` package which can be installed with

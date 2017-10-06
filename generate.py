@@ -92,6 +92,9 @@ def generate_index():
     index = template.format(**data)
     with open('index.html', 'w') as f:
         f.write(index)
+    if os.path.exists("latest"):
+        os.remove("latest")
+    os.symlink('docs/' + data['sha'], "latest")
 
 def generate(db_sha):
     if generate_docs(db_sha):

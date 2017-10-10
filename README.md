@@ -1,6 +1,6 @@
 # montagu-db-docs
 
-**[Rendered documenentation](https://vimc.github.io/montagu-db-docs)**
+**[Rendered documenentation](https://vimc.github.io/montagu-db-docs)** - the latest version is always available [here](https://vimc.github.io/montagu-db-docs/latest)
 
 Automatically generated documentation for [`montagu-db`](https://github.com/vimc/montagu-db) to keep the repository size under control and to allow us to easily see multiple versions at once.
 

@@ -94,7 +94,7 @@ def generate_index():
         f.write(index)
     if os.path.exists("latest"):
         os.remove("latest")
-    os.symlink('docs/' + data['sha'], "latest")
+    os.symlink('docs/' + data['sha'] + "/", "latest")
 
 def generate(db_sha):
     if generate_docs(db_sha):

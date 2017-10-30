@@ -85,7 +85,7 @@ def generate_index():
     with open('index.html.template', 'r') as f:
         template = f.read()
     fmt = '<li><a href = docs/{sha}/index.html>{sha}</a> ' + \
-          '({date_image}, generated {date_docs})</li>'
+          '({date_image}, generated {date_generated})</li>'
 
     data = max(dat, key = lambda x: x['date_image'])
     data['versions'] = '\n'.join([fmt.format(**i) for i in dat])

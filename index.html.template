@@ -9,7 +9,7 @@
             documentation</a>
           sha <code>{sha}</code>,
           built {date_image},
-          generated {date_docs}
+          generated {date_generated}
         </p>
         <h1>All versions</h1>
         <ul>

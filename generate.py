@@ -3,6 +3,8 @@ import docker
 import json
 import os
 import os.path
+import shutil
+import subprocess
 import sys
 from datetime import datetime
 import dateutil.parser
@@ -19,7 +21,19 @@ def build_schemaspy():
     img = client.images.build(path = 'docker', tag = 'schemaspy')
     return img.tags[0]
 
-def generate_docs(db_sha):
+def git_commit(db_sha):
+    print("creating commit")
+    msg = 'Generated docs for db version {sha}'.format(sha = db_sha)
+    try:
+        subprocess.run(['git', 'add', 'docs/' + db_sha, 'index.html', 'latest'],
+                       check = True)
+        subprocess.run(['git', 'commit', '--no-verify', '-m', msg],
+                       check = True)
+    except Exception as err:
+        subprocess.run(['git', 'reset'], check = False)
+        raise err
+
+def generate(db_sha):
     registry = 'docker.montagu.dide.ic.ac.uk:5000'
     db_image_name = '{registry}/montagu-db:{db_sha}'.format(
         db_sha = db_sha, registry = registry)
@@ -43,6 +57,7 @@ def generate_docs(db_sha):
         os.makedirs(dest)
 
     nw = db = None
+    success = False
     try:
         print("generating documentation for " + db_sha)
         nw = client.networks.create(nw_name)
@@ -67,13 +82,18 @@ def generate_docs(db_sha):
                 'date_generated': datetime_format(datetime.now())}
         with open(dest + '/info.json', 'w') as f:
             json.dump(info, f)
-
+        generate_index()
+        git_commit(db_sha)
+        success = True
     finally:
         if db:
             db.stop(timeout = 1)
             db.remove()
         if nw:
             nw.remove()
+        if not success:
+            print("removing generated docs")
+            shutil.rmtree(dest)
 
     return True
 
@@ -95,10 +115,6 @@ def generate_index():
     if os.path.exists("latest"):
         os.remove("latest")
     os.symlink('docs/' + data['sha'] + "/", "latest")
-
-def generate(db_sha):
-    if generate_docs(db_sha):
-        generate_index()
 
 if __name__ == "__main__":
     args = sys.argv[1:]

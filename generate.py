@@ -102,12 +102,14 @@ def generate_index():
 
     paths = [os.path.join('docs', x, 'info.json') for x in os.listdir('docs')]
     dat = [read_json(p) for p in paths if os.path.exists(p)]
+    dat = sorted(dat, key=lambda x: x['date_image'], reverse=True)
+
     with open('index.html.template', 'r') as f:
         template = f.read()
     fmt = '<li><a href = docs/{sha}/index.html>{sha}</a> ' + \
           '({date_image}, generated {date_generated})</li>'
 
-    data = max(dat, key = lambda x: x['date_image'])
+    data = dat[0]
     data['versions'] = '\n'.join([fmt.format(**i) for i in dat])
     index = template.format(**data)
     with open('index.html', 'w') as f:

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>montagu Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.2/codemirror.min.css">
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="plugins/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><b>montagu</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>            
+			<!--<li><a href="components.html" title="List of system components">Components</a></li>-->
+			<li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>All Relationships</h1>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+				<div class="box box-primary">		
+			<div class="box-header with-border">
+              <i class="fa fa-code-fork"></i>
+              <h3 class="box-title">Diagrams</h3>
+            </div>	
+			<div class="box-body">	
+			<div class="nav-tabs-custom" style="cursor: move;">
+            <!-- Tabs within a box -->
+			<h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+            <ul class="nav nav-tabs pull-left ui-sortable-handle">
+			  			              <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>			  			 
+			  			              <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>			  			 
+            </ul>
+            <div class="tab-content no-padding">            
+				<div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+																					<map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/activity_type.html" title="activity_type" alt="" coords="396,1693,591,1810">
+<area shape="rect" id="node2" href="tables/api_access_log.html" title="api_access_log" alt="" coords="2019,1781,2230,2021">
+<area shape="rect" id="node3" href="tables/app_user.html" title="app_user" alt="" coords="1641,1810,1828,1928">
+<area shape="rect" id="node4" href="tables/burden_estimate.html" title="burden_estimate" alt="" coords="2360,1364,2596,1657">
+<area shape="rect" id="node5" href="tables/burden_estimate_set.html" title="burden_estimate_set" alt="" coords="1984,817,2265,1110">
+<area shape="rect" id="node9" href="tables/burden_outcome.html" title="burden_outcome" alt="" coords="2011,1248,2238,1394">
+<area shape="rect" id="node10" href="tables/country.html" title="country" alt="" coords="415,1970,572,2088">
+<area shape="rect" id="node34" href="tables/model_run.html" title="model_run" alt="" coords="1984,1412,2265,1558">
+<area shape="rect" id="node7" href="tables/burden_estimate_set_status.html" title="burden_estimate_set_status" alt="" coords="1573,942,1896,1060">
+<area shape="rect" id="node8" href="tables/burden_estimate_set_type.html" title="burden_estimate_set_type" alt="" coords="1581,1077,1888,1194">
+<area shape="rect" id="node36" href="tables/model_run_parameter_set.html" title="model_run_parameter_set" alt="" coords="1583,1248,1887,1453">
+<area shape="rect" id="node38" href="tables/model_version.html" title="model_version" alt="" coords="1199,157,1405,333">
+<area shape="rect" id="node41" href="tables/responsibility.html" title="responsibility" alt="" coords="1529,690,1940,925">
+<area shape="rect" id="node6" href="tables/burden_estimate_set_problem.html" title="burden_estimate_set_problem" alt="" coords="2309,801,2647,948">
+<area shape="rect" id="node11" href="tables/country_metadata.html" title="country_metadata" alt="" coords="764,1781,1005,1957">
+<area shape="rect" id="node50" href="tables/touchstone.html" title="touchstone" alt="" coords="389,1210,597,1416">
+<area shape="rect" id="node12" href="tables/country_vaccine_metadata.html" title="country_vaccine_metadata" alt="" coords="729,2082,1040,2288">
+<area shape="rect" id="node59" href="tables/vaccine.html" title="vaccine" alt="" coords="418,2370,569,2488">
+<area shape="rect" id="node13" href="tables/coverage.html" title="coverage" alt="" coords="1186,2010,1418,2216">
+<area shape="rect" id="node14" href="tables/coverage_set.html" title="coverage_set" alt="" coords="777,1457,993,1692">
+<area shape="rect" id="node26" href="tables/gender.html" title="gender" alt="" coords="811,2305,958,2422">
+<area shape="rect" id="node25" href="tables/gavi_support_level.html" title="gavi_support_level" alt="" coords="374,1545,613,1662">
+<area shape="rect" id="node15" href="tables/demographic_dataset.html" title="demographic_dataset" alt="" coords="737,2881,1033,3057">
+<area shape="rect" id="node16" href="tables/demographic_source.html" title="demographic_source" alt="" coords="364,2805,623,2922">
+<area shape="rect" id="node18" href="tables/demographic_statistic_type.html" title="demographic_statistic_type" alt="" coords="336,3021,651,3197">
+<area shape="rect" id="node17" href="tables/demographic_statistic.html" title="demographic_statistic" alt="" coords="1154,2697,1450,2990">
+<area shape="rect" id="node21" href="tables/demographic_variant.html" title="demographic_variant" alt="" coords="18,3180,279,3297">
+<area shape="rect" id="node20" href="tables/demographic_value_unit.html" title="demographic_value_unit" alt="" coords="5,3045,292,3162">
+<area shape="rect" id="node19" href="tables/demographic_statistic_type_variant.html" title="demographic_statistic_type_variant" alt="" coords="695,3110,1075,3233">
+<area shape="rect" id="node22" href="tables/disability_weight.html" title="disability_weight" alt="" coords="761,557,1008,733">
+<area shape="rect" id="node23" href="tables/disease.html" title="disease" alt="" coords="417,422,569,540">
+<area shape="rect" id="node24" href="tables/gavi_focal_model.html" title="gavi_focal_model" alt="" coords="1187,350,1417,532">
+<area shape="rect" id="node33" href="tables/model.html" title="model" alt="" coords="785,98,984,304">
+<area shape="rect" id="node27" href="tables/impact_estimate.html" title="impact_estimate" alt="" coords="2749,1990,2983,2166">
+<area shape="rect" id="node30" href="tables/impact_estimate_set.html" title="impact_estimate_set" alt="" coords="2334,520,2622,784">
+<area shape="rect" id="node28" href="tables/impact_estimate_ingredient.html" title="impact_estimate_ingredient" alt="" coords="2319,965,2637,1176">
+<area shape="rect" id="node29" href="tables/impact_estimate_recipe.html" title="impact_estimate_recipe" alt="" coords="2712,1058,3020,1410">
+<area shape="rect" id="node32" href="tables/impact_outcome.html" title="impact_outcome" alt="" coords="2365,1229,2591,1346">
+<area shape="rect" id="node42" href="tables/responsibility_set.html" title="responsibility_set" alt="" coords="1186,1036,1418,1217">
+<area shape="rect" id="node49" href="tables/support_type.html" title="support_type" alt="" coords="2379,1904,2577,2021">
+<area shape="rect" id="node31" href="tables/impact_estimate_set_ingredient.html" title="impact_estimate_set_ingredient" alt="" coords="2691,490,3041,672">
+<area shape="rect" id="node39" href="tables/modelling_group.html" title="modelling_group" alt="" coords="382,193,605,340">
+<area shape="rect" id="node35" href="tables/model_run_parameter.html" title="model_run_parameter" alt="" coords="1984,1576,2265,1728">
+<area shape="rect" id="node57" href="tables/upload_info.html" title="upload_info" alt="" coords="1211,1234,1393,1352">
+<area shape="rect" id="node37" href="tables/model_run_parameter_value.html" title="model_run_parameter_value" alt="" coords="2317,1674,2639,1850">
+<area shape="rect" id="node40" href="tables/permission.html" title="permission" alt="" coords="1645,2237,1824,2330">
+<area shape="rect" id="node46" href="tables/scenario.html" title="scenario" alt="" coords="1185,1369,1419,1550">
+<area shape="rect" id="node43" href="tables/responsibility_set_status.html" title="responsibility_set_status" alt="" coords="739,1286,1031,1404">
+<area shape="rect" id="node44" href="tables/role.html" title="role" alt="" coords="1654,2085,1815,2202">
+<area shape="rect" id="node45" href="tables/role_permission.html" title="role_permission" alt="" coords="2015,2208,2234,2330">
+<area shape="rect" id="node48" href="tables/scenario_description.html" title="scenario_description" alt="" coords="756,393,1013,540">
+<area shape="rect" id="node47" href="tables/scenario_coverage_set.html" title="scenario_coverage_set" alt="" coords="1597,1470,1873,1652">
+<area shape="rect" id="node54" href="tables/touchstone_name.html" title="touchstone_name" alt="" coords="31,1202,267,1320">
+<area shape="rect" id="node55" href="tables/touchstone_status.html" title="touchstone_status" alt="" coords="27,1337,270,1454">
+<area shape="rect" id="node51" href="tables/touchstone_country.html" title="touchstone_country" alt="" coords="758,980,1011,1161">
+<area shape="rect" id="node52" href="tables/touchstone_demographic_dataset.html" title="touchstone_demographic_dataset" alt="" coords="1119,2420,1485,2572">
+<area shape="rect" id="node53" href="tables/touchstone_demographic_source.html" title="touchstone_demographic_source" alt="" coords="705,2440,1064,2592">
+<area shape="rect" id="node56" href="tables/touchstone_years.html" title="touchstone_years" alt="" coords="767,750,1003,926">
+<area shape="rect" id="node58" href="tables/user_role.html" title="user_role" alt="" coords="2042,2038,2207,2190">
+<area shape="rect" id="node60" href="tables/vaccine_routine_age.html" title="vaccine_routine_age" alt="" coords="757,2681,1012,2828">
+</map>
+
+					<a name='diagram'><img id='compactDegreeImg' src='diagrams/summary/relationships.real.compact.png' usemap='#compactRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+				<div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+																					<map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/activity_type.html" title="activity_type" alt="" coords="396,2869,591,2992">
+<area shape="rect" id="node2" href="tables/api_access_log.html" title="api_access_log" alt="" coords="2019,2315,2230,2555">
+<area shape="rect" id="node3" href="tables/app_user.html" title="app_user" alt="" coords="1641,2315,1828,2555">
+<area shape="rect" id="node4" href="tables/burden_estimate.html" title="burden_estimate" alt="" coords="2360,1685,2596,1984">
+<area shape="rect" id="node5" href="tables/burden_estimate_set.html" title="burden_estimate_set" alt="" coords="1984,1177,2265,1652">
+<area shape="rect" id="node9" href="tables/burden_outcome.html" title="burden_outcome" alt="" coords="2011,1705,2238,1887">
+<area shape="rect" id="node10" href="tables/country.html" title="country" alt="" coords="415,2009,572,2161">
+<area shape="rect" id="node34" href="tables/model_run.html" title="model_run" alt="" coords="1984,1904,2265,2056">
+<area shape="rect" id="node7" href="tables/burden_estimate_set_status.html" title="burden_estimate_set_status" alt="" coords="1573,1435,1896,1557">
+<area shape="rect" id="node8" href="tables/burden_estimate_set_type.html" title="burden_estimate_set_type" alt="" coords="1581,1575,1888,1727">
+<area shape="rect" id="node36" href="tables/model_run_parameter_set.html" title="model_run_parameter_set" alt="" coords="1583,1744,1887,1955">
+<area shape="rect" id="node38" href="tables/model_version.html" title="model_version" alt="" coords="1199,247,1405,457">
+<area shape="rect" id="node41" href="tables/responsibility.html" title="responsibility" alt="" coords="1529,1141,1940,1381">
+<area shape="rect" id="node6" href="tables/burden_estimate_set_problem.html" title="burden_estimate_set_problem" alt="" coords="2309,1516,2647,1668">
+<area shape="rect" id="node11" href="tables/country_metadata.html" title="country_metadata" alt="" coords="764,1697,1005,1996">
+<area shape="rect" id="node50" href="tables/touchstone.html" title="touchstone" alt="" coords="389,1409,597,1649">
+<area shape="rect" id="node12" href="tables/country_vaccine_metadata.html" title="country_vaccine_metadata" alt="" coords="729,2085,1040,2355">
+<area shape="rect" id="node59" href="tables/vaccine.html" title="vaccine" alt="" coords="418,2460,569,2583">
+<area shape="rect" id="node13" href="tables/coverage.html" title="coverage" alt="" coords="1186,2513,1418,2900">
+<area shape="rect" id="node14" href="tables/coverage_set.html" title="coverage_set" alt="" coords="777,2372,993,2612">
+<area shape="rect" id="node26" href="tables/gender.html" title="gender" alt="" coords="811,2871,958,3023">
+<area shape="rect" id="node25" href="tables/gavi_support_level.html" title="gavi_support_level" alt="" coords="374,2600,613,2723">
+<area shape="rect" id="node15" href="tables/demographic_dataset.html" title="demographic_dataset" alt="" coords="737,3317,1033,3499">
+<area shape="rect" id="node16" href="tables/demographic_source.html" title="demographic_source" alt="" coords="364,3239,623,3391">
+<area shape="rect" id="node18" href="tables/demographic_statistic_type.html" title="demographic_statistic_type" alt="" coords="336,3408,651,3736">
+<area shape="rect" id="node17" href="tables/demographic_statistic.html" title="demographic_statistic" alt="" coords="1154,3015,1450,3401">
+<area shape="rect" id="node21" href="tables/demographic_variant.html" title="demographic_variant" alt="" coords="18,3731,279,3883">
+<area shape="rect" id="node20" href="tables/demographic_value_unit.html" title="demographic_value_unit" alt="" coords="5,3591,292,3713">
+<area shape="rect" id="node19" href="tables/demographic_statistic_type_variant.html" title="demographic_statistic_type_variant" alt="" coords="695,3599,1075,3721">
+<area shape="rect" id="node22" href="tables/disability_weight.html" title="disability_weight" alt="" coords="761,628,1008,897">
+<area shape="rect" id="node23" href="tables/disease.html" title="disease" alt="" coords="417,517,569,640">
+<area shape="rect" id="node24" href="tables/gavi_focal_model.html" title="gavi_focal_model" alt="" coords="1187,475,1417,656">
+<area shape="rect" id="node33" href="tables/model.html" title="model" alt="" coords="785,100,984,369">
+<area shape="rect" id="node27" href="tables/impact_estimate.html" title="impact_estimate" alt="" coords="2749,1356,2983,1567">
+<area shape="rect" id="node30" href="tables/impact_estimate_set.html" title="impact_estimate_set" alt="" coords="2334,1001,2622,1271">
+<area shape="rect" id="node28" href="tables/impact_estimate_ingredient.html" title="impact_estimate_ingredient" alt="" coords="2319,1288,2637,1499">
+<area shape="rect" id="node29" href="tables/impact_estimate_recipe.html" title="impact_estimate_recipe" alt="" coords="2712,1953,3020,2399">
+<area shape="rect" id="node32" href="tables/impact_outcome.html" title="impact_outcome" alt="" coords="2365,2315,2591,2437">
+<area shape="rect" id="node42" href="tables/responsibility_set.html" title="responsibility_set" alt="" coords="1186,1375,1418,1556">
+<area shape="rect" id="node49" href="tables/support_type.html" title="support_type" alt="" coords="2379,2813,2577,2936">
+<area shape="rect" id="node31" href="tables/impact_estimate_set_ingredient.html" title="impact_estimate_set_ingredient" alt="" coords="2691,972,3041,1153">
+<area shape="rect" id="node39" href="tables/modelling_group.html" title="modelling_group" alt="" coords="382,195,605,435">
+<area shape="rect" id="node35" href="tables/model_run_parameter.html" title="model_run_parameter" alt="" coords="1984,2073,2265,2225">
+<area shape="rect" id="node57" href="tables/upload_info.html" title="upload_info" alt="" coords="1211,1597,1393,1749">
+<area shape="rect" id="node37" href="tables/model_run_parameter_value.html" title="model_run_parameter_value" alt="" coords="2317,2008,2639,2189">
+<area shape="rect" id="node40" href="tables/permission.html" title="permission" alt="" coords="1645,2771,1824,2864">
+<area shape="rect" id="node46" href="tables/scenario.html" title="scenario" alt="" coords="1185,1767,1419,1948">
+<area shape="rect" id="node43" href="tables/responsibility_set_status.html" title="responsibility_set_status" alt="" coords="739,1485,1031,1608">
+<area shape="rect" id="node44" href="tables/role.html" title="role" alt="" coords="1654,2572,1815,2753">
+<area shape="rect" id="node45" href="tables/role_permission.html" title="role_permission" alt="" coords="2015,2741,2234,2864">
+<area shape="rect" id="node48" href="tables/scenario_description.html" title="scenario_description" alt="" coords="756,459,1013,611">
+<area shape="rect" id="node47" href="tables/scenario_coverage_set.html" title="scenario_coverage_set" alt="" coords="1597,2008,1873,2189">
+<area shape="rect" id="node54" href="tables/touchstone_name.html" title="touchstone_name" alt="" coords="31,1399,267,1551">
+<area shape="rect" id="node55" href="tables/touchstone_status.html" title="touchstone_status" alt="" coords="27,1568,270,1691">
+<area shape="rect" id="node51" href="tables/touchstone_country.html" title="touchstone_country" alt="" coords="758,1143,1011,1324">
+<area shape="rect" id="node52" href="tables/touchstone_demographic_dataset.html" title="touchstone_demographic_dataset" alt="" coords="1119,2044,1485,2196">
+<area shape="rect" id="node53" href="tables/touchstone_demographic_source.html" title="touchstone_demographic_source" alt="" coords="705,2665,1064,2817">
+<area shape="rect" id="node56" href="tables/touchstone_years.html" title="touchstone_years" alt="" coords="767,915,1003,1125">
+<area shape="rect" id="node58" href="tables/user_role.html" title="user_role" alt="" coords="2042,2572,2207,2724">
+<area shape="rect" id="node60" href="tables/vaccine_routine_age.html" title="vaccine_routine_age" alt="" coords="757,3112,1012,3264">
+</map>
+
+					<a name='diagram'><img id='largeDegreeImg' src='diagrams/summary/relationships.real.large.png' usemap='#largeRelationshipsDiagram' class='diagram' border='0' alt='' align='left'></a>							
+				</div>
+			  			</div>
+			</div>
+		  </div><!-- /.box-body -->
+		</div>
+		      </section>    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generate by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemeSpy 6.0.0-rc1</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.1.4 -->
+<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.colVis.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="plugins/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="plugins/anchorjs/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.2/mode/sql/sql.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script src="relationships.js"></script>
+<script src="schemaSpy.js"></script>
+</body>
+</html>

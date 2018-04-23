@@ -72,6 +72,7 @@ def generate(db_sha):
                                    network=nw.name,
                                    detach=True,
                                    name='db')
+        db.exec_run("montagu-wait.sh")
         date_image = dateutil.parser.parse(db.image.attrs['Created'])
         print("performing migrations")
         client.containers.run(migrate_image_name, network=nw.name,

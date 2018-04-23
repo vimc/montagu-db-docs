@@ -21,8 +21,9 @@ def read_json(filename):
 
 def build_schemaspy():
     client = docker.from_env()
-    img = client.images.build(path = 'docker', tag = 'schemaspy')
-    return img.tags[0]
+    tag = 'schemaspy.latest'
+    img = client.images.build(path='docker', tag=tag)
+    return tag
 
 
 def git_commit(db_sha):

@@ -9,41 +9,48 @@ import sys
 from datetime import datetime
 import dateutil.parser
 
+
 def datetime_format(x):
     return x.strftime('%Y-%m-%d %H:%M:%S')
+
 
 def read_json(filename):
     with open(filename, 'r') as f:
         return json.load(f)
 
+
 def build_schemaspy():
     client = docker.from_env()
-    img = client.images.build(path = 'docker', tag = 'schemaspy')
-    return img.tags[0]
+    tag = 'schemaspy.latest'
+    img = client.images.build(path='docker', tag=tag)
+    return tag
+
 
 def git_commit(db_sha):
     print("creating commit")
-    msg = 'Generated docs for db version {sha}'.format(sha = db_sha)
+    msg = 'Generated docs for db version {sha}'.format(sha=db_sha)
     try:
-        subprocess.run(['git', 'add', 'docs/' + db_sha, 'index.html', 'latest'],
-                       check = True)
+        subprocess.run(['git', 'add', 'docs/' + db_sha, 'index.html',
+                        'latest'],
+                       check=True)
         subprocess.run(['git', 'commit', '--no-verify', '-m', msg],
-                       check = True)
+                       check=True)
     except Exception as err:
-        subprocess.run(['git', 'reset'], check = False)
+        subprocess.run(['git', 'reset'], check=False)
         raise err
+
 
 def generate(db_sha):
     registry = 'docker.montagu.dide.ic.ac.uk:5000'
     db_image_name = '{registry}/montagu-db:{db_sha}'.format(
-        db_sha = db_sha, registry = registry)
+        db_sha=db_sha, registry=registry)
     migrate_image_name = '{registry}/montagu-migrate:{db_sha}'.format(
-        db_sha = db_sha, registry = registry)
+        db_sha=db_sha, registry=registry)
 
     nw_name = 'migration_test'
     db_name = 'db'
     client = docker.from_env()
-    command = '-host {db} -db montagu -u vimc '.format(db = db_name) + \
+    command = '-host {db} -db montagu -u vimc '.format(db=db_name) + \
               '-p changeme -s public -o /output'
     dest = 'docs/' + db_sha
     volumes = {os.path.abspath(dest): {'bind': '/output', 'mode': 'rw'}}
@@ -62,21 +69,22 @@ def generate(db_sha):
         print("generating documentation for " + db_sha)
         nw = client.networks.create(nw_name)
         db = client.containers.run(db_image_name,
-                                   network = nw.name,
-                                   detach = True,
-                                   name = 'db')
+                                   network=nw.name,
+                                   detach=True,
+                                   name='db')
+        db.exec_run("montagu-wait.sh")
         date_image = dateutil.parser.parse(db.image.attrs['Created'])
         print("performing migrations")
-        client.containers.run(migrate_image_name, network = nw.name,
-                              remove = True)
+        client.containers.run(migrate_image_name, network=nw.name,
+                              remove=True)
         print("documenting schema")
         client.containers.run(schemaspy,
                               command,
-                              remove = True,
-                              network = nw_name,
-                              volumes = volumes,
-                              user = uid,
-                              stdout = True)
+                              remove=True,
+                              network=nw_name,
+                              volumes=volumes,
+                              user=uid,
+                              stdout=True)
         info = {'sha': db_sha,
                 'date_image': datetime_format(date_image),
                 'date_generated': datetime_format(datetime.now())}
@@ -87,7 +95,7 @@ def generate(db_sha):
         success = True
     finally:
         if db:
-            db.stop(timeout = 1)
+            db.stop(timeout=1)
             db.remove()
         if nw:
             nw.remove()
@@ -96,6 +104,7 @@ def generate(db_sha):
             shutil.rmtree(dest)
 
     return True
+
 
 def generate_index():
     print("updating index")
@@ -117,6 +126,7 @@ def generate_index():
     if os.path.exists("latest"):
         os.remove("latest")
     os.symlink('docs/' + data['sha'] + "/", "latest")
+
 
 if __name__ == "__main__":
     args = sys.argv[1:]

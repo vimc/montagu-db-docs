@@ -67,6 +67,7 @@ def generate(db_sha):
     success = False
     try:
         print("generating documentation for " + db_sha)
+        print("- starting database container")
         nw = client.networks.create(nw_name)
         db = client.containers.run(db_image_name,
                                    network=nw.name,
@@ -74,10 +75,10 @@ def generate(db_sha):
                                    name='db')
         db.exec_run("montagu-wait.sh")
         date_image = dateutil.parser.parse(db.image.attrs['Created'])
-        print("performing migrations")
+        print("- performing migrations")
         client.containers.run(migrate_image_name, network=nw.name,
                               remove=True)
-        print("documenting schema")
+        print("- documenting schema")
         client.containers.run(schemaspy,
                               command,
                               remove=True,

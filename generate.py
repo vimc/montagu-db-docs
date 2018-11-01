@@ -131,7 +131,7 @@ def generate_index():
 
 if __name__ == "__main__":
     root = os.path.dirname(os.path.realpath(__file__))
-    sys.chdir(root)
+    os.chdir(root)
     args = sys.argv[1:]
     if len(args) != 1:
         raise Exception("Expected exactly one argument")
